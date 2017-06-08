@@ -12,14 +12,20 @@
     <label th:text="${mensagem}"></label>
 
     <form method="POST">
-        <label>SKU</label>
-        <input type="text" name="sku"/>
+        <label for="sku">SKU</label>
+        <input type="text" id="sku" name="sku"/>
         <br>
-        <label>Nome</label>
-        <input type="text" name="nome"/>
 
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome"/>
         <br>
+
+        <label for="descricao">Descricao</label>
+        <textarea cols="30" rows="3" id="descricao" name="descricao"></textarea>
+        <br>
+
         <input type="submit" value="salvar"/>
+
 
     </form>
 

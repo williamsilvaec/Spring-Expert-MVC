@@ -1,31 +1,25 @@
 package com.algaworks.brewer.model;
 
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Size;
 
 
 /**
- * Created by willi on 07/06/2017.
+ * Created by william on 07/06/2017.
  */
+@Data
 public class Cerveja {
 
     @NotBlank
     private String sku;
+
+    @NotBlank
     private String nome;
 
-    public String getSku() {
-        return sku;
-    }
+    @Size(min = 1, max = 50)
+    private String descricao;
 
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }
