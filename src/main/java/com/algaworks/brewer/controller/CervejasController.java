@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CervejasController {
 
     @RequestMapping("/cervejas/novo")
-    public String novo() {
+    public String novo(Cerveja cerveja) {
         return "cerveja/CadastroCerveja";
     }
 
@@ -26,10 +26,11 @@ public class CervejasController {
 
         if (result.hasErrors()) {
             model.addAttribute("mensagem", "Erro no formulário!");
-            return "cerveja/CadastroCerveja";
+            return novo(cerveja);
         }
 
         System.out.println("sku >>>>>>" + cerveja.getSku());
+        System.out.println("nome >>>>>" + cerveja.getNome());
         attributes.addFlashAttribute("mensagem", "salvo com sucesso!");
 
         return "redirect:/cervejas/novo";

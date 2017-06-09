@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thmeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8"/>
@@ -9,19 +9,24 @@
 <body>
     <h1>Olá! Thymeleaf configurado</h1>
 
-    <label th:text="${mensagem}"></label>
+    <div th:each="erro: ${#fields.detailedErrors('${cerveja.*}')}">
+        <span th:text="${erro.message}"></span>
+    </div>
 
-    <form method="POST">
+    <form method="POST" th:object="${cerveja}">
+
+        <label th:text="${mensagem}"></label><br>
+
         <label for="sku">SKU</label>
-        <input type="text" id="sku" name="sku"/>
+        <input type="text" id="sku" th:field="*{sku}"/>
         <br>
 
         <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome"/>
+        <input type="text" id="nome" th:field="*{nome}"/>
         <br>
 
         <label for="descricao">Descricao</label>
-        <textarea cols="30" rows="3" id="descricao" name="descricao"></textarea>
+        <textarea cols="30" rows="3" id="descricao" th:field="*{descricao}"></textarea>
         <br>
 
         <input type="submit" value="salvar"/>
