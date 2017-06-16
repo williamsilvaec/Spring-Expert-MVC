@@ -1,6 +1,7 @@
 package com.algaworks.brewer.config;
 
 import com.algaworks.brewer.controller.CervejasController;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -60,6 +61,8 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         // with specific cases when expressions in one template are reused
         // across different data types, so this flag is "false" by default
         // for safer backwards compatibility.
+
+        templateEngine.addDialect(new LayoutDialect());
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
     }
