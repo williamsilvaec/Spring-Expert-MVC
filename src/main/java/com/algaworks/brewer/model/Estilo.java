@@ -2,13 +2,14 @@ package com.algaworks.brewer.model;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Data
+@Entity
+@Table(name = "estilo")
 public class Estilo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,6 +19,9 @@ public class Estilo implements Serializable {
     private Long codigo;
 
     private String nome;
+
+    @OneToMany(mappedBy = "estilo")
+    private List<Cerveja> cervejas;
 
     @Override
     public boolean equals(Object o) {

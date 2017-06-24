@@ -1,5 +1,6 @@
 package com.algaworks.brewer.config.init;
 
+import com.algaworks.brewer.config.JPAConfig;
 import com.algaworks.brewer.config.WebConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -13,7 +14,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return null;
+        return new Class<?>[] { JPAConfig.class };
     }
 
     @Override
