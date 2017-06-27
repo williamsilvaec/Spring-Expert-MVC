@@ -3,7 +3,6 @@ package com.algaworks.brewer.controller;
 import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.model.Origem;
 import com.algaworks.brewer.model.Sabor;
-import com.algaworks.brewer.repository.Cervejas;
 import com.algaworks.brewer.repository.Estilos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
