@@ -3,6 +3,7 @@ package com.algaworks.brewer.model;
 
 /*import lombok.AllArgsConstructor;
 import lombok.Builder;*/
+import com.algaworks.brewer.validation.SKU;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,6 +24,7 @@ public class Cerveja {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
+    @SKU
     @NotBlank(message = "SKU é obrigatório")
     private String sku;
 
