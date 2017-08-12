@@ -1,6 +1,8 @@
 package com.algaworks.brewer.model;
 
 
+/*import lombok.AllArgsConstructor;
+import lombok.Builder;*/
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -14,6 +16,7 @@ import java.math.BigDecimal;
  */
 @Data
 @Entity
+@Table(name = "cerveja")
 public class Cerveja {
 
     @Id
@@ -49,21 +52,4 @@ public class Cerveja {
     @JoinColumn(name = "codigo_estilo")
     private Estilo estilo;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Cerveja)) return false;
-        if (!super.equals(o)) return false;
-
-        Cerveja cerveja = (Cerveja) o;
-
-        return getCodigo().equals(cerveja.getCodigo());
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + getCodigo().hashCode();
-        return result;
-    }
 }

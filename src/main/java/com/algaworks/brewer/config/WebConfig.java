@@ -1,6 +1,7 @@
 package com.algaworks.brewer.config;
 
 import com.algaworks.brewer.controller.CervejasController;
+import com.algaworks.brewer.controller.converter.EstiloConverter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -8,6 +9,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -35,33 +38,20 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 
     @Bean
     public SpringResourceTemplateResolver templateResolver(){
-        // SpringResourceTemplateResolver automatically integrates with Spring's own
-        // resource resolution infrastructure, which is highly recommended.
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(this.applicationContext);
         templateResolver.setPrefix("classpath:/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
-        // HTML is the default value, added here for the sake of clarity.
         templateResolver.setTemplateMode(TemplateMode.HTML);
-        // Template cache is true by default. Set to false if you want
-        // templates to be automatically updated when modified.
         templateResolver.setCacheable(true);
         return templateResolver;
     }
 
     @Bean
     public SpringTemplateEngine templateEngine(){
-        // SpringTemplateEngine automatically applies SpringStandardDialect and
-        // enables Spring's own MessageSource message resolution mechanisms.
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
-        // Enabling the SpringEL compiler with Spring 4.2.4 or newer can
-        // speed up execution in most scenarios, but might be incompatible
-        // with specific cases when expressions in one template are reused
-        // across different data types, so this flag is "false" by default
-        // for safer backwards compatibility.
-
         templateEngine.addDialect(new LayoutDialect());
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
@@ -73,6 +63,13 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
+    }
+
+    @Bean
+    public FormattingConversionService mvcConversionService() {
+        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+        conversionService.addConverter(new EstiloConverter());
+        return conversionService;
     }
 
     @Override

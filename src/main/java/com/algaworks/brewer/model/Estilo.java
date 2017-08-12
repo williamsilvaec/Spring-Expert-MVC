@@ -23,21 +23,4 @@ public class Estilo implements Serializable {
     @OneToMany(mappedBy = "estilo")
     private List<Cerveja> cervejas;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Estilo)) return false;
-        if (!super.equals(o)) return false;
-
-        Estilo estilo = (Estilo) o;
-
-        return getCodigo() != null ? getCodigo().equals(estilo.getCodigo()) : estilo.getCodigo() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (getCodigo() != null ? getCodigo().hashCode() : 0);
-        return result;
-    }
 }

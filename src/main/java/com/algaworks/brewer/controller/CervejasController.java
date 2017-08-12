@@ -4,6 +4,7 @@ import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.model.Origem;
 import com.algaworks.brewer.model.Sabor;
 import com.algaworks.brewer.repository.Estilos;
+import com.algaworks.brewer.service.CadastroCervejaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /**
  * Created by willi on 06/06/2017.
  */
-
 @Controller
 public class CervejasController {
 
     private static final Logger logger = LoggerFactory.getLogger(CervejasController.class);
 
-    @Autowired
-    private Estilos estilos;
+    @Autowired private Estilos estilos;
+
+    @Autowired private CadastroCervejaService cadastroCervejaService;
 
     @RequestMapping("/cervejas/novo")
     public ModelAndView novo(Cerveja cerveja) {
@@ -38,17 +39,15 @@ public class CervejasController {
     }
 
     @RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
-    public ModelAndView cadastrar(@Validated Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
+    public ModelAndView cadastrar(@Validated Cerveja cerveja, BindingResult result,
+                                  Model model, RedirectAttributes attributes) {
 
         if (result.hasErrors()) {
-            model.addAttribute("mensagem", "Erro no formulário!");
             return novo(cerveja);
         }
 
-        System.out.println("sku >>>>>>" + cerveja.getSku());
-        System.out.println("nome >>>>>" + cerveja.getNome());
-        attributes.addFlashAttribute("mensagem", "salvo com sucesso!");
-
+        cadastroCervejaService.salvar(cerveja);
+        attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
         return new ModelAndView("redirect:/cervejas/novo");
     }
 
