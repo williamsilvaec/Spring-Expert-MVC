@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "([a-zA-Z]\\d{4})?")
+@Pattern(regexp = "([a-zA-Z]{2}\\d{4})?")
 public @interface SKU {
 
     @OverridesAttribute(constraint = Pattern.class, name = "message")

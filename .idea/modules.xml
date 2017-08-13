@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Spring-Expert-MVC.iml" filepath="$PROJECT_DIR$/.idea/Spring-Expert-MVC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/brewer.iml" filepath="$PROJECT_DIR$/.idea/brewer.iml" />
     </modules>
   </component>
 </project>
