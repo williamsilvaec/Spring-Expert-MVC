@@ -68,4 +68,9 @@ public class Cerveja {
     @JoinColumn(name = "codigo_estilo")
     private Estilo estilo;
 
+    @PrePersist @PreUpdate
+    private void prePersistUpdate() {
+        sku = sku.toUpperCase();
+    }
+
 }
