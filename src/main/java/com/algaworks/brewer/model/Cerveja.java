@@ -1,9 +1,7 @@
 package com.algaworks.brewer.model;
 
 
-/*import lombok.AllArgsConstructor;
-import lombok.Builder;*/
-//import com.algaworks.brewer.validation.SKU;
+
 import com.algaworks.brewer.validation.SKU;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
