@@ -2,6 +2,7 @@ package com.algaworks.brewer.config;
 
 import com.algaworks.brewer.controller.CervejasController;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
+import com.algaworks.brewer.thymeleaf.BrewerDialect;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -60,6 +61,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.addDialect(new LayoutDialect());
+        templateEngine.addDialect(new BrewerDialect());
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
     }
