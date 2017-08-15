@@ -5,10 +5,7 @@ import com.algaworks.brewer.dto.FotoDTO;
 import com.algaworks.brewer.storage.FotoStorage;
 import com.algaworks.brewer.storage.FotoStorageRunnable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,5 +24,10 @@ public class FotosController {
         thread.start();
 
         return resultado;
+    }
+
+    @GetMapping("/temp/{nome}")
+    public byte[] recuperarFotoTemporaria(@PathVariable String nome) {
+        return fotoStorage.recuperarFotoTemporaria(nome);
     }
 }

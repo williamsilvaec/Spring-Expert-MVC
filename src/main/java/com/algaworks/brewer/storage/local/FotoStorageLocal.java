@@ -45,6 +45,11 @@ public class FotoStorageLocal implements FotoStorage {
         return novoNome;
     }
 
+    @Override
+    public byte[] recuperarFotoTemporaria(String nome) {
+        return new byte[0];
+    }
+
     private void criarPastas() {
         try {
             Files.createDirectories(this.local);
