@@ -4,5 +4,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FotoStorage {
 
-    void salvarTemporariamente(MultipartFile[] files);
+    public void salvarTemporariamente(MultipartFile[] files);
 }
