@@ -5,6 +5,7 @@ package com.algaworks.brewer.model;
 import com.algaworks.brewer.validation.SKU;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -74,6 +75,10 @@ public class Cerveja {
     @PrePersist @PreUpdate
     private void prePersistUpdate() {
         sku = sku.toUpperCase();
+    }
+
+    public String getFotoOuMock() {
+        return !StringUtils.isEmpty(foto) ? foto : "cerveja-mock.png";
     }
 
 }
