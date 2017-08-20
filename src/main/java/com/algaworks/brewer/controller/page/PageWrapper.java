@@ -1,8 +1,8 @@
 package com.algaworks.brewer.controller.page;
 
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,10 @@ public class PageWrapper<T> {
 
     public PageWrapper(Page<T> page, HttpServletRequest httpServletRequest) {
         this.page = page;
-        this.uriComponentsBuilder = ServletUriComponentsBuilder.fromRequest(httpServletRequest);
+        String httpUrl = httpServletRequest.getRequestURL().append(
+                httpServletRequest.getQueryString() != null ? "?" + httpServletRequest.getQueryString() : "")
+                .toString().replaceAll("\\+", "%20");
+        this.uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(httpUrl);
     }
 
     public List<T> getConteudo() {
