@@ -1,13 +1,16 @@
 package com.algaworks.brewer.model;
 
+import lombok.Getter;
+
 public enum TipoPessoa {
 
     FISICA("Física", "CPF", "000.000.000-00"),
     JURIDICA("Jurídica", "CNPJ", "00.000.000/0000-00");
 
-    private String descricao;
-    private String documento;
-    private String mascara;
+
+    @Getter private String descricao;
+    @Getter private String documento;
+    @Getter private String mascara;
 
     TipoPessoa(String descricao, String documento, String mascara) {
         this.descricao = descricao;
@@ -15,15 +18,4 @@ public enum TipoPessoa {
         this.mascara = mascara;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public String getMascara() {
-        return mascara;
-    }
 }
