@@ -9,6 +9,7 @@ import com.algaworks.brewer.repository.filter.CidadeFilter;
 import com.algaworks.brewer.service.CadastroCidadeService;
 import com.algaworks.brewer.service.exception.NomeCidadeJaCadastradaException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
@@ -42,6 +43,7 @@ public class CidadesController {
         return mv;
     }
 
+    @Cacheable("cidades")
     @RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<Cidade> pesquisarPorCodigoEstado(
             @RequestParam(name = "estado", defaultValue = "-1") Long codigoEstado) {
