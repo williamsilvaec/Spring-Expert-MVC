@@ -1,0 +1,45 @@
+package com.algaworks.brewer.model;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
+
+@Data
+@EqualsAndHashCode(of = {"codigo"})
+@Entity
+@Table(name = "usuario")
+public class Usuario implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long codigo;
+
+    @NotBlank(message = "Nome é obrigatório")
+    private String nome;
+
+    @NotBlank(message = "E-mail é obrigatório")
+    @Email(message = "E-mail é inválido")
+    private String email;
+
+    private String senha;
+
+    private Boolean ativo;
+
+    @NotNull(message = "Selecione pelo menos um grupo")
+    @ManyToMany
+    @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario"),
+                                       inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
+    private List<Grupo> grupos;
+
+    @NotNull(message = "Data de nascimento é obrigatório")
+    @Column(name = "data_nascimento")
+    private LocalDate dataNascimento;
+
+}
