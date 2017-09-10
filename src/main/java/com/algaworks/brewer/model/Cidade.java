@@ -27,4 +27,8 @@ public class Cidade implements Serializable {
     @JsonIgnore
     @NotNull(message = "O Estado é obrigatório")
     private Estado estado;
+
+    public boolean temEstado() {
+        return estado != null;
+    }
 }
