@@ -1,5 +1,6 @@
 package com.algaworks.brewer.model;
 
+import com.algaworks.brewer.validation.AtributoConfirmacao;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Email;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(of = {"codigo"})
+@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "confirmacaoSenha", message = "confirmação de senha não confere")
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
@@ -29,6 +31,9 @@ public class Usuario implements Serializable {
     private String email;
 
     private String senha;
+
+    @Transient
+    private String confirmacaoSenha;
 
     private Boolean ativo;
 
