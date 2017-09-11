@@ -47,4 +47,8 @@ public class Usuario implements Serializable {
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
+    public boolean isNovo() {
+        return codigo == null;
+    }
+
 }
