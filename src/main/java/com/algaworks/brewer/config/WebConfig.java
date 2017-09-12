@@ -32,6 +32,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -80,6 +81,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         templateEngine.addDialect(new LayoutDialect());
         templateEngine.addDialect(new BrewerDialect());
         templateEngine.addDialect(new DataAttributeDialect());
+        templateEngine.addDialect(new SpringSecurityDialect());
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
     }
