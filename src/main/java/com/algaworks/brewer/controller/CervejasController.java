@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
  * Created by willi on 06/06/2017.
@@ -51,7 +52,7 @@ public class CervejasController {
     }
 
     @RequestMapping(value = "/novo", method = RequestMethod.POST)
-    public ModelAndView cadastrar(@Validated Cerveja cerveja, BindingResult result,
+    public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result,
                                   Model model, RedirectAttributes attributes) {
 
         if (result.hasErrors()) {
